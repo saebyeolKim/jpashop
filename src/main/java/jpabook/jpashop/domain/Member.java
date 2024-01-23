@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter @Setter //보통 Setter 생성X, 비즈니스 메서드를 별도로 제공
 public class Member {
 
     @Id @GeneratedValue
