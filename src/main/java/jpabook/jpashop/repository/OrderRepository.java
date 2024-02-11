@@ -113,4 +113,14 @@ public class OrderRepository {
                         " join o.delivery d", OrderSimpleQueryDto.class)
                 .getResultList();
     }
+
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" + //일대다 페치 조인 시 페이징 처리 불가, 메모리에서 페이징 해버리기 때문에 매우 위험. 일대다에 대한 페치조인은 하나만
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+    }
 }
