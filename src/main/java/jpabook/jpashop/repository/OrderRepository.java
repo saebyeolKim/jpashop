@@ -123,4 +123,19 @@ public class OrderRepository {
                         " join fetch oi.item i", Order.class)
                 .getResultList();
     }
+
+    public List<Order> findAllByWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "select o from Order o", Order.class) // 이 방법은 네트워크를 더 많이 타기 때문에 toOne 관계는 join fetch 를 걸어서 통신량을 줄인다. row 수를 증가시키지 않으므로
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+//        return em.createQuery(
+//                        "select o from Order o" +
+//                                " join fetch o.member m" +
+//                                " join fetch o.delivery d", Order.class)
+//                .setFirstResult(offset)
+//                .setMaxResults(limit)
+//                .getResultList();
+    }
 }
