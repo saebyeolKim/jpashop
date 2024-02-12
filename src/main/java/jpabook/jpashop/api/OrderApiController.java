@@ -53,11 +53,11 @@ public class OrderApiController {
 
     @GetMapping("/api/v3/orders")
     public List<OrderDto> orderV3() {
-        List<Order> orders = orderRepository.findAllWithItem();
-        for (Order order : orders) {
-            System.out.println("order ref = " + order);
-            System.out.println("order.getId() = " + order.getId());
-        }
+        List<Order> orders = orderRepository.findAllWithItem(); //따로 서비스를 만들어서 거기서 밑의 과정들을 해주고 받기만 한다.
+//        for (Order order : orders) {
+//            System.out.println("order ref = " + order);
+//            System.out.println("order.getId() = " + order.getId());
+//        }
         List<OrderDto> collect = orders.stream()
                 .map(o -> new OrderDto(o))
                 .collect(toList());

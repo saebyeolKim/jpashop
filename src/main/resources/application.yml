@@ -13,6 +13,8 @@ spring:
 #        show_sql: true
         format_sql: true
         default_batch_fetch_size: 100
+    open-in-view: false # 서비스와 레포지토리에서만 영속성 컨텍스트가 살아남음 (지연로딩을 트랜잭션 안에서 처리해야 함)
+    # 고객서비스의 실시간 API는 OSIV 를 끄고, ADMIN 처럼 커넥션을 많이 사용하지 않는 곳에서는 OSIV 를 켠다.
 
 logging:
   level:
